@@ -1,0 +1,273 @@
+/* Admin Styles */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-black), var(--dark-blue));
+    padding: 20px;
+}
+
+.login-box {
+    background: linear-gradient(145deg, #1a1a2e, #0d1b2a);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header i {
+    font-size: 48px;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.login-header h2 {
+    color: var(--gold);
+    font-size: 28px;
+}
+
+.login-error {
+    color: #ff4444;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Admin Container */
+#adminContainer {
+    padding-top: 80px;
+}
+
+.admin-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: linear-gradient(145deg, #1a1a2e, #0d1b2a);
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.stat-card i {
+    font-size: 36px;
+    color: var(--gold);
+}
+
+.stat-card h3 {
+    font-size: 28px;
+    color: var(--white);
+    font-weight: bold;
+}
+
+.stat-card p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.stat-total {
+    border-color: var(--gold);
+    background: linear-gradient(145deg, #1a1a2e, #2a1a3e);
+}
+
+.stat-total i {
+    font-size: 42px;
+}
+
+/* Tables */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: linear-gradient(145deg, #1a1a2e, #0d1b2a);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+th {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+td {
+    color: var(--white);
+    font-size: 14px;
+}
+
+td img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+/* Status badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.status-menunggu {
+    background: rgba(255, 165, 0, 0.2);
+    color: #ffa500;
+}
+
+.status-dibayar {
+    background: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+}
+
+.status-proses {
+    background: rgba(0, 0, 255, 0.2);
+    color: #4444ff;
+}
+
+.status-selesai {
+    background: rgba(0, 255, 255, 0.2);
+    color: #00ffff;
+}
+
+.status-ditolak {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+}
+
+/* Action buttons */
+.btn-action {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-action:hover {
+    transform: scale(1.05);
+}
+
+.btn-edit {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--gold);
+}
+
+.btn-delete {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+}
+
+.btn-action-sm {
+    padding: 3px 8px;
+    font-size: 11px;
+    margin: 2px;
+}
+
+/* Settings form */
+.settings-form {
+    max-width: 600px;
+}
+
+.qr-preview {
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    display: block;
+}
+
+.qr-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Buttons */
+.btn-secondary {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    table {
+        font-size: 12px;
+    }
+    
+    th, td {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-content {
+        padding: 15px 10px;
+    }
+}
