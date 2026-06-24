@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VStore Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div id="loginContainer" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-crown"></i>
+                <h2>VStore Admin</h2>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="loginUsername" required placeholder="admin">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" required placeholder="********">
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <div id="loginError" class="login-error"></div>
+        </div>
+    </div>
+
+    <div id="adminContainer" style="display: none;">
+        <header>
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>VStore Admin</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#dashboard" onclick="showTab('dashboard')"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="#products" onclick="showTab('products')"><i class="fas fa-box"></i> Produk</a></li>
+                    <li><a href="#orders" onclick="showTab('orders')"><i class="fas fa-shopping-cart"></i> Tempahan</a></li>
+                    <li><a href="#settings" onclick="showTab('settings')"><i class="fas fa-cog"></i> Tetapan</a></li>
+                    <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+                <div class="nav-toggle" id="adminNavToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </header>
+
+        <div class="admin-content">
+            <!-- Dashboard -->
+            <div id="dashboard" class="tab-content active">
+                <h2 class="section-title"><i class="fas fa-chart-line"></i> Dashboard</h2>
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div>
+                            <h3 id="ordersToday">0</h3>
+                            <p>Tempahan Hari Ini</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar"></i>
+                        <div>
+                            <h3 id="ordersMonth">0</h3>
+                            <p>Tempahan Bulan Ini</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div>
+                            <h3 id="revenueToday">RM0</h3>
+                            <p>Pendapatan Hari Ini</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <div>
+                            <h3 id="revenueMonth">RM0</h3>
+                            <p>Pendapatan Bulan Ini</p>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-total">
+                        <i class="fas fa-trophy"></i>
+                        <div>
+                            <h3 id="revenueTotal">RM0</h3>
+                            <p>Jumlah Pendapatan Keseluruhan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products -->
+            <div id="products" class="tab-content">
+                <h2 class="section-title"><i class="fas fa-box"></i> Pengurusan Produk</h2>
+                
+                <button class="btn-primary" onclick="showAddProduct()">
+                    <i class="fas fa-plus"></i> Tambah Produk
+                </button>
+
+                <div class="table-container">
+                    <table id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Gambar</th>
+                                <th>Nama</th>
+                                <th>Harga</th>
+                                <th>Status</th>
+                                <th>Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Orders -->
+            <div id="orders" class="tab-content">
+                <h2 class="section-title"><i class="fas fa-shopping-cart"></i> Pengurusan Tempahan</h2>
+                
+                <div class="table-container">
+                    <table id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama</th>
+                                <th>WhatsApp</th>
+                                <th>ID Pool</th>
+                                <th>Produk</th>
+                                <th>Harga</th>
+                                <th>Status</th>
+                                <th>Resit</th>
+                                <th>Tarikh</th>
+                                <th>Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div id="settings" class="tab-content">
+                <h2 class="section-title"><i class="fas fa-cog"></i> Tetapan Kedai</h2>
+                
+                <form id="settingsForm" class="settings-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label><i class="fas fa-store"></i> Nama Kedai</label>
+                        <input type="text" id="storeName" name="store_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-user-cog"></i> Username Admin</label>
+                        <input type="text" id="adminUsername" name="admin_username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fab fa-telegram"></i> Telegram Bot Token</label>
+                        <input type="text" id="telegramBotToken" name="telegram_bot_token" placeholder="123456789:ABCdefGHIjklMNOpqrsTUVwxyz">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fab fa-telegram"></i> Telegram Owner ID</label>
+                        <input type="text" id="telegramOwnerId" name="telegram_owner_id" placeholder="123456789">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-qrcode"></i> QR Pembayaran</label>
+                        <input type="file" id="paymentQr" name="payment_qr" accept="image/*">
+                        <small>Upload gambar QR code untuk pembayaran (JPG, PNG, GIF, WEBP)</small>
+                        <div class="qr-preview" id="qrPreview">
+                            <img src="" alt="QR Preview">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Simpan Tetapan
+                    </button>
+                </form>
+
+                <hr style="border-color: rgba(255,215,0,0.2); margin: 30px 0;">
+
+                <h3><i class="fas fa-key"></i> Tukar Password</h3>
+                <form id="passwordForm" class="settings-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Password Semasa</label>
+                        <input type="password" id="currentPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-key"></i> Password Baru</label>
+                        <input type="password" id="newPassword" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-exchange-alt"></i> Tukar Password
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-plus-circle"></i> Tambah Produk</h3>
+            <form id="addProductForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Nama Produk</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label>Harga (RM)</label>
+                    <input type="number" id="productPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Gambar Produk</label>
+                    <input type="file" id="productImage" accept="image/*">
+                </div>
+                <button type="submit" class="btn-primary">Tambah</button>
+                <button type="button" onclick="closeModal('addProductModal')" class="btn-secondary">Batal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="editProductModal" class="modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-edit"></i> Edit Produk</h3>
+            <form id="editProductForm" enctype="multipart/form-data">
+                <input type="hidden" id="editProductId">
+                <div class="form-group">
+                    <label>Nama Produk</label>
+                    <input type="text" id="editProductName" required>
+                </div>
+                <div class="form-group">
+                    <label>Harga (RM)</label>
+                    <input type="number" id="editProductPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="editProductStatus">
+                        <option value="1">Aktif</option>
+                        <option value="0">Tutup</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Gambar Produk (Biarkan kosong jika tidak mahu tukar)</label>
+                    <input type="file" id="editProductImage" accept="image/*">
+                </div>
+                <button type="submit" class="btn-primary">Simpan</button>
+                <button type="button" onclick="closeModal('editProductModal')" class="btn-secondary">Batal</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
